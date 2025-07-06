@@ -1,25 +1,14 @@
-package com.github.supercoding.repository.Items;
-
-import java.util.Objects;
+package com.github.supercoding.repository.items;
 
 public class ItemEntity {
     private Integer id;
-
-    public Integer getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(Integer storeId) {
-        this.storeId = storeId;
-    }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
+    private String name;
+    private String type;
+    private Integer price;
+    private Integer storeId;
+    private Integer stock;
+    private String cpu;
+    private String capacity;
 
     public ItemEntity(Integer id, String name, String type, Integer price, String cpu, String capacity) {
         this.id = id;
@@ -43,14 +32,6 @@ public class ItemEntity {
         this.capacity = capacity;
     }
 
-    private String name;
-    private String type;
-    private Integer price;
-    private Integer storeId;
-    private Integer stock;
-    private String cpu;
-    private String capacity;
-
     public Integer getId() {
         return id;
     }
@@ -73,6 +54,22 @@ public class ItemEntity {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 
     public Integer getPrice() {
@@ -101,14 +98,20 @@ public class ItemEntity {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ItemEntity)) {
+            return false;
+        }
+
         ItemEntity that = (ItemEntity) o;
-        return Objects.equals(id, that.id);
+
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return id.hashCode();
     }
 }

@@ -1,6 +1,7 @@
-package com.github.supercoding.web.dto;
+package com.github.supercoding.web.dto.items;
 
 public class ItemBody {
+
     private String name;
     private String type;
     private Integer price;

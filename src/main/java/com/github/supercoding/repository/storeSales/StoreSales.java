@@ -1,11 +1,15 @@
 package com.github.supercoding.repository.storeSales;
 
-import java.util.Objects;
-
 public class StoreSales {
     private Integer id;
     private String storeName;
     private Integer amount;
+
+    public StoreSales(Integer id, String storeName, Integer amount) {
+        this.id = id;
+        this.storeName = storeName;
+        this.amount = amount;
+    }
 
     public Integer getId() {
         return id;
@@ -33,20 +37,20 @@ public class StoreSales {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof StoreSales)) {
+            return false;
+        }
+
         StoreSales that = (StoreSales) o;
-        return Objects.equals(id, that.id);
+
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
-    }
-
-    public StoreSales(Integer id, String storeName, Integer amount) {
-        this.id = id;
-        this.storeName = storeName;
-        this.amount = amount;
+        return id.hashCode();
     }
 }

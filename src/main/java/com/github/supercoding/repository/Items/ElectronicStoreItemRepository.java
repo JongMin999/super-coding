@@ -1,5 +1,4 @@
-package com.github.supercoding.repository.Items;
-
+package com.github.supercoding.repository.items;
 
 import java.util.List;
 
@@ -14,6 +13,5 @@ public interface ElectronicStoreItemRepository {
     void deleteItem(int parseInt);
 
     ItemEntity findItemById(Integer idInt);
-
     void updateItemStock(Integer itemId, Integer i);
 }

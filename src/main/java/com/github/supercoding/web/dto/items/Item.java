@@ -1,21 +1,22 @@
-package com.github.supercoding.web.dto;
+package com.github.supercoding.web.dto.items;
 
-import com.github.supercoding.repository.Items.ItemEntity;
+import com.github.supercoding.repository.items.ItemEntity;
 
 import java.util.Objects;
 
 public class Item {
+
     private String id;
     private String name;
     private String type;
     private Integer price;
     private Spec spec;
 
-    public Item(){
+    public Item() {
     }
 
-    public Item(Integer id, ItemBody itemBody){
-        this.id = String.valueOf(id);
+    public Item(String id, ItemBody itemBody){
+        this.id = id;
         this.name = itemBody.getName();
         this.type = itemBody.getType();
         this.price = itemBody.getPrice();
@@ -31,7 +32,7 @@ public class Item {
     }
 
     public Item(ItemEntity itemEntity){
-        this.id = itemEntity.getCapacity();
+        this.id = itemEntity.getId().toString();
         this.type = itemEntity.getType();
         this.price = itemEntity.getPrice();
         this.name = itemEntity.getName();
@@ -60,13 +61,18 @@ public class Item {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Item)) {
+            return false;
+        }
         Item item = (Item) o;
-        return Objects.equals(id, item.id);
+        return id.equals(item.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hash(id);
     }
 }
