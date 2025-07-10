@@ -4,19 +4,17 @@ import com.github.supercoding.service.ElectronicStoreItemService;
 import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
 import com.github.supercoding.web.dto.items.ItemBody;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class ElectronicStoreController {
 
-    private ElectronicStoreItemService electronicStoreItemService;
-
-    public ElectronicStoreController(ElectronicStoreItemService electronicStoreItemService) {
-        this.electronicStoreItemService = electronicStoreItemService;
-    }
+    private final ElectronicStoreItemService electronicStoreItemService;
 
     @GetMapping("/items")
     public List<Item> findAllItem(){
