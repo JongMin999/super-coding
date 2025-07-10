@@ -19,8 +19,8 @@ public class ReservationJdbcTemplateDao implements ReservationRepository {
     @Override
     public Boolean saveReservation(Reservation reservation) {
         Integer rowNums = template.update("INSERT INTO reservation(passenger_id, airline_ticket_id, reservation_status, reserve_at) VALUES (? ,? , ?, ? )",
-                                          reservation.getPassengerId(), reservation.getAirlineTicketId(), reservation.getReservationStatus(),
-                                          new Date(Timestamp.valueOf(reservation.getReserveAt()).getTime()));
+                reservation.getPassengerId(), reservation.getAirlineTicketId(), reservation.getReservationStatus(),
+                new Date(Timestamp.valueOf(reservation.getReserveAt()).getTime()));
         return rowNums > 0;
     }
 }
