@@ -1,12 +1,16 @@
 package com.github.supercoding.service;
 
-import com.github.supercoding.repository.items.ElectronicStoreItemRepository;
-import com.github.supercoding.repository.items.ItemEntity;
+import com.github.supercoding.repository.Items.ElectronicStoreItemRepository;
+import com.github.supercoding.repository.Items.ItemEntity;
 import com.github.supercoding.repository.storeSales.StoreSales;
 import com.github.supercoding.repository.storeSales.StoreSalesRepository;
+import com.github.supercoding.service.mapper.ItemMapper;
 import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
 import com.github.supercoding.web.dto.items.ItemBody;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,39 +18,35 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class ElectronicStoreItemService {
-    private ElectronicStoreItemRepository electronicStoreItemRepository;
-    private StoreSalesRepository storeSalesRepository;
-
-    public ElectronicStoreItemService(ElectronicStoreItemRepository electronicStoreItemRepository, StoreSalesRepository storeSalesRepository) {
-        this.electronicStoreItemRepository = electronicStoreItemRepository;
-        this.storeSalesRepository = storeSalesRepository;
-    }
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final ElectronicStoreItemRepository electronicStoreItemRepository;
+    private final StoreSalesRepository storeSalesRepository;
 
     public List<Item> findAllItem() {
         List<ItemEntity> itemEntities = electronicStoreItemRepository.findAllItems();
-        return itemEntities.stream().map(Item::new).collect(Collectors.toList());
+        return itemEntities.stream().map(ItemMapper.INSTANCE::itemEntityToItem).collect(Collectors.toList());
     }
 
     public Integer savaItem(ItemBody itemBody) {
-        ItemEntity itemEntity = new ItemEntity(null, itemBody.getName(), itemBody.getType(),
-                                               itemBody.getPrice(), itemBody.getSpec().getCpu(), itemBody.getSpec().getCapacity());
+        ItemEntity itemEntity = ItemMapper.INSTANCE.idAndItemBodyToItemEntity(null, itemBody);
         return electronicStoreItemRepository.saveItem(itemEntity);
     }
 
     public Item findItemById(String id) {
         Integer idInt = Integer.parseInt(id);
         ItemEntity itemEntity = electronicStoreItemRepository.findItemById(idInt);
-        Item item = new Item(itemEntity);
+        Item item = ItemMapper.INSTANCE.itemEntityToItem(itemEntity);
         return item;
     }
 
     public List<Item> findItemsByIds(List<String> ids) {
         List<ItemEntity> itemEntities = electronicStoreItemRepository.findAllItems();
         return itemEntities.stream()
-                                       .map(Item::new)
-                                       .filter((item -> ids.contains(item.getId())))
-                                       .collect(Collectors.toList());
+                .map(ItemMapper.INSTANCE::itemEntityToItem)
+                .filter((item -> ids.contains(item.getId())))
+                .collect(Collectors.toList());
     }
 
     public void deleteItem(String id) {
@@ -56,13 +56,10 @@ public class ElectronicStoreItemService {
 
     public Item updateItem(String id, ItemBody itemBody) {
         Integer idInt = Integer.valueOf(id);
-        ItemEntity itemEntity = new ItemEntity(idInt, itemBody.getName(),
-                                               itemBody.getType(), itemBody.getPrice(),
-                                               itemBody.getSpec().getCpu(), itemBody.getSpec().getCapacity());
-
+        ItemEntity itemEntity = ItemMapper.INSTANCE.idAndItemBodyToItemEntity(null, itemBody);
         ItemEntity itemEntityUpdated = electronicStoreItemRepository.updateItemEntity(idInt, itemEntity);
 
-        return new Item(itemEntityUpdated);
+        return ItemMapper.INSTANCE.itemEntityToItem(itemEntityUpdated);
     }
 
     @Transactional(transactionManager = "tm1")
@@ -77,7 +74,6 @@ public class ElectronicStoreItemService {
         Integer itemId = buyOrder.getItemId();
         Integer itemNums = buyOrder.getItemNums();
 
-        System.out.println("itemId: " + itemId);
         ItemEntity itemEntity = electronicStoreItemRepository.findItemById(itemId);
 
         if (itemEntity.getStoreId() == null ) throw new RuntimeException("매장을 찾을 수 없습니다.");
@@ -92,7 +88,10 @@ public class ElectronicStoreItemService {
         // Item 재고 감소
         electronicStoreItemRepository.updateItemStock(itemId, itemEntity.getStock() - successBuyItemNums);
 
-        if (successBuyItemNums == 4) throw new RuntimeException("4개를 구매하는건 허락하지않습니다.");
+        if (successBuyItemNums == 4) {
+            logger.error("4개를 구매하는 건 허락하지않습니다.");
+            throw new RuntimeException("4개를 구매하는건 허락하지않습니다.");
+        }
 
         // 매장 매상 추가
         StoreSales storeSales = storeSalesRepository.findStoreSalesById(itemEntity.getStoreId());

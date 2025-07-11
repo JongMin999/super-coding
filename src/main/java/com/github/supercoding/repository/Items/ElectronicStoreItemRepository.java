@@ -1,4 +1,4 @@
-package com.github.supercoding.repository.items;
+package com.github.supercoding.repository.Items;
 
 import java.util.List;
 
