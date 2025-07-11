@@ -1,5 +1,6 @@
-package com.github.supercoding.repository.items;
+package com.github.supercoding.repository.Items;
 
+import com.github.supercoding.repository.Items.ItemEntity;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -9,7 +10,7 @@ import java.util.List;
 
 
 @Repository
-public class ElectronicStoreItemJdbcDao implements ElectronicStoreItemRepository {
+public class ElectronicStoreItemJdbcDao implements com.github.supercoding.repository.Items.ElectronicStoreItemRepository {
 
     private final JdbcTemplate jdbcTemplate;
 
