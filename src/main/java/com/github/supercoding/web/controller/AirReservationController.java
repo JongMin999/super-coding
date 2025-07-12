@@ -8,6 +8,7 @@ import com.github.supercoding.web.dto.airline.TicketResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/api/air-reservation")
 @RequiredArgsConstructor
+@Slf4j
 public class AirReservationController {
 
     private final AirReservationService airReservationService;
@@ -35,12 +37,7 @@ public class AirReservationController {
     @Operation(summary = "User와 Ticket Id로 예약 진행")
     @PostMapping("/reservations")
     public ReservationResult makeReservation(
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "예약 요청 정보",
-                    required = true
-            )
-            @RequestBody ReservationRequest reservationRequest
-    ) {
+            @RequestBody ReservationRequest reservationRequest){
         return airReservationService.makeReservation(reservationRequest);
     }
 }

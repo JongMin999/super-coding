@@ -4,6 +4,8 @@ import com.github.supercoding.repository.Items.ElectronicStoreItemRepository;
 import com.github.supercoding.repository.Items.ItemEntity;
 import com.github.supercoding.repository.storeSales.StoreSales;
 import com.github.supercoding.repository.storeSales.StoreSalesRepository;
+import com.github.supercoding.service.exceptions.NotAcceptException;
+import com.github.supercoding.service.exceptions.NotFoundException;
 import com.github.supercoding.service.mapper.ItemMapper;
 import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
@@ -26,23 +28,32 @@ public class ElectronicStoreItemService {
 
     public List<Item> findAllItem() {
         List<ItemEntity> itemEntities = electronicStoreItemRepository.findAllItems();
+        if(itemEntities.isEmpty()) throw new NotFoundException("아무 Items들을 찾을 수 없습니다.");
         return itemEntities.stream().map(ItemMapper.INSTANCE::itemEntityToItem).collect(Collectors.toList());
     }
 
     public Integer savaItem(ItemBody itemBody) {
         ItemEntity itemEntity = ItemMapper.INSTANCE.idAndItemBodyToItemEntity(null, itemBody);
-        return electronicStoreItemRepository.saveItem(itemEntity);
+        try{
+            electronicStoreItemRepository.saveItem(itemEntity);
+        } catch (RuntimeException exception){
+            throw new NotAcceptException("Item을 저장하는 도중에 Error가 발생하였습니다.");
+        }
+        ItemEntity itemEntityCreated = electronicStoreItemRepository.findItemByName(itemEntity.getName()).orElseThrow(() -> new NotFoundException("해당 이름의 Item을 찾을 수 없습니다."));
+        return itemEntityCreated.getId();
     }
 
     public Item findItemById(String id) {
         Integer idInt = Integer.parseInt(id);
-        ItemEntity itemEntity = electronicStoreItemRepository.findItemById(idInt);
+        ItemEntity itemEntity = electronicStoreItemRepository.findItemById(idInt).orElseThrow(() -> new NotFoundException("해당 Id: " + idInt + "의 Item을 찾을 수 없습니다."));
         Item item = ItemMapper.INSTANCE.itemEntityToItem(itemEntity);
         return item;
     }
 
     public List<Item> findItemsByIds(List<String> ids) {
         List<ItemEntity> itemEntities = electronicStoreItemRepository.findAllItems();
+        if(itemEntities.isEmpty()) throw new NotFoundException("아무 Items 들을 찾을 수 없습니다.");
+
         return itemEntities.stream()
                 .map(ItemMapper.INSTANCE::itemEntityToItem)
                 .filter((item -> ids.contains(item.getId())))
@@ -74,7 +85,7 @@ public class ElectronicStoreItemService {
         Integer itemId = buyOrder.getItemId();
         Integer itemNums = buyOrder.getItemNums();
 
-        ItemEntity itemEntity = electronicStoreItemRepository.findItemById(itemId);
+        ItemEntity itemEntity = electronicStoreItemRepository.findItemById(itemId).orElseThrow(() -> new NotFoundException("해당 이름의 Item을 찾을 수 없습니다."));
 
         if (itemEntity.getStoreId() == null ) throw new RuntimeException("매장을 찾을 수 없습니다.");
         if (itemEntity.getStock() <= 0) throw new RuntimeException("상품의 재고가 없습니다.");
@@ -94,7 +105,7 @@ public class ElectronicStoreItemService {
         }
 
         // 매장 매상 추가
-        StoreSales storeSales = storeSalesRepository.findStoreSalesById(itemEntity.getStoreId());
+        StoreSales storeSales = storeSalesRepository.findStoreSalesById(itemEntity.getStoreId()).orElseThrow(() -> new NotFoundException("요청하신 StoreId: " + itemEntity.getStoreId() + "에 해당하는 StoreSale 없습니다."));
         storeSalesRepository.updateSalesAmount(itemEntity.getStoreId(), storeSales.getAmount() + totalPrice);
 
         return successBuyItemNums;
