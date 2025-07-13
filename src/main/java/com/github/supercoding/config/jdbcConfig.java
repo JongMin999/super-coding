@@ -16,7 +16,7 @@ public class jdbcConfig {
     public DataSource dataSource1(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername("root");
-        dataSource.setPassword("12341234");
+        dataSource.setPassword("1234");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/chapter_96?useUnicode=true&characterEncoding=UTF-8");
         return dataSource;
@@ -26,7 +26,7 @@ public class jdbcConfig {
     public DataSource dataSource2(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUsername("root");
-        dataSource.setPassword("12341234");
+        dataSource.setPassword("1234");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/chapter_97?useUnicode=true&characterEncoding=UTF-8");
         return dataSource;
