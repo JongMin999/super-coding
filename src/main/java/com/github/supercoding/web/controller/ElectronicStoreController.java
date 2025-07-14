@@ -4,11 +4,14 @@ import com.github.supercoding.service.ElectronicStoreItemService;
 import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
 import com.github.supercoding.web.dto.items.ItemBody;
+import com.github.supercoding.web.dto.items.StoreInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -108,5 +111,32 @@ public class ElectronicStoreController {
     ) {
         Integer orderItemNums = electronicStoreItemService.buyItems(buyOrder);
         return "요청하신 Item 중 " + orderItemNums + "개를 구매하였습니다.";
+    }
+
+    @Operation(summary = "여러 Item types 검색 (쿼리문)")
+    @GetMapping("/items-types")
+    public List<Item> findItemByTypes(
+            @RequestParam("type") List<String> types){
+        log.info("/items-types 요청 ids: " + types);
+        List<Item> items = electronicStoreItemService.findItemsByTypes(types);
+        return items;
+    }
+
+    @Operation(summary = "pagination 지원")
+    @GetMapping("/items-page")
+    public Page<Item> findItemPagination(Pageable pageable) {
+        return electronicStoreItemService.findAllWithPageable(pageable);
+    }
+
+    @Operation(summary = "pagination 지원 2")
+    @GetMapping("/items-types-page")
+    public Page<Item> findItemsPagination(@RequestParam("type") List<String> types, Pageable pageable) {
+        return electronicStoreItemService.findAllWithPageable(types, pageable);
+    }
+
+    @Operation(summary = "전체 Stores 정보 검색")
+    @GetMapping("/stores")
+    public List<StoreInfo> findAllStoreInfo() {
+        return electronicStoreItemService.findAllStoreInfo();
     }
 }
