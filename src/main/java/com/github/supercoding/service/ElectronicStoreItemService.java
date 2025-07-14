@@ -10,6 +10,7 @@ import com.github.supercoding.service.mapper.ItemMapper;
 import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
 import com.github.supercoding.web.dto.items.ItemBody;
+import com.github.supercoding.web.dto.items.StoreInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -98,8 +99,9 @@ public class ElectronicStoreItemService {
 
         ItemEntity itemEntity = electronicStoreItemJpaRepository.findById(itemId)
                 .orElseThrow(() -> new NotFoundException("해당 이름의 Item을 찾을 수 없습니다."));
+        log.info("============== 동작 확인 로그 1 ===============");
 
-        if (itemEntity.getStoreId() == null ) throw new NotFoundException("매장을 찾을 수 없습니다.");
+        if (itemEntity.getStoreSales() == null ) throw new NotFoundException("매장을 찾을 수 없습니다.");
         if (itemEntity.getStock() <= 0) throw new NotAcceptException("상품의 재고가 없습니다.");
 
         Integer successBuyItemNums;
@@ -117,8 +119,8 @@ public class ElectronicStoreItemService {
         }
 
         // 매장 매상 추가
-        StoreSales storeSales = storeSalesJpaRepository.findById(itemEntity.getStoreId())
-                .orElseThrow(() -> new NotFoundException("요청하신 StoreId : " + itemEntity.getStoreId() + "에 해당하는 StoreSale 없습니다.") );
+        StoreSales storeSales = itemEntity.getStoreSales()
+                .orElseThrow(() -> new NotFoundException("요청하신 Store 해당하는 StoreSale 없습니다.") );
 
         storeSales.setAmount(storeSales.getAmount() + totalPrice);
         return successBuyItemNums;
@@ -142,5 +144,13 @@ public class ElectronicStoreItemService {
     public Page<Item> findAllWithPageable(List<String> types, Pageable pageable) {
         Page<ItemEntity> itemEntities = electronicStoreItemJpaRepository.findAllByTypeIn(types, pageable);
         return itemEntities.map(ItemMapper.INSTANCE::itemEntityToItem);
+    }
+
+    @Transactional(transactionManager = "tmJpa1")
+    public List<StoreInfo> findAllStoreInfo(){
+        List<StoreSales> storeSales = storeSalesJpaRepository.findAllFetchJoin();
+        log.info("================ N + 1 ==============");
+        List<StoreInfo> storeInfos = storeSales.stream().map(StoreInfo::new).collect(Collectors.toList());
+        return storeInfos;
     }
 }
