@@ -1,9 +1,7 @@
 package com.github.supercoding.service;
 
 import com.github.supercoding.repository.airlineTicket.AirlineTicket;
-import com.github.supercoding.repository.airlineTicket.AirlineTicketAndFlightInfo;
 import com.github.supercoding.repository.airlineTicket.AirlineTicketJpaRepository;
-import com.github.supercoding.repository.airlineTicket.AirlineTicketRepository;
 import com.github.supercoding.repository.flight.Flight;
 import com.github.supercoding.repository.passenger.Passenger;
 import com.github.supercoding.repository.passenger.PassengerJpaRepository;
@@ -14,7 +12,6 @@ import com.github.supercoding.repository.users.UserJpaRepository;
 import com.github.supercoding.service.exceptions.InvalidValueException;
 import com.github.supercoding.service.exceptions.NotAcceptException;
 import com.github.supercoding.service.exceptions.NotFoundException;
-import com.github.supercoding.service.mapper.TicketMapper;
 import com.github.supercoding.web.dto.airline.ReservationRequest;
 import com.github.supercoding.web.dto.airline.ReservationResult;
 import com.github.supercoding.web.dto.airline.Ticket;
