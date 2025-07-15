@@ -1,4 +1,4 @@
-package com.github.supercoding.service.mapper;
+package com.github.supercoding.service;
 
 import com.github.supercoding.repository.Items.ItemEntity;
 import com.github.supercoding.web.dto.items.Item;

@@ -1,4 +1,4 @@
-package com.github.supercoding.service.mapper;
+package com.github.supercoding.service;
 import com.github.supercoding.repository.airlineTicket.AirlineTicket;
 import com.github.supercoding.web.dto.airline.Ticket;
 import org.mapstruct.Mapper;
@@ -25,6 +25,7 @@ public interface TicketMapper {
 
     @Named("convert")
     static String localDateTimeToString(LocalDateTime localDateTime){
-        return localDateTime.format(formatter);
+        if(localDateTime != null) return localDateTime.format(formatter);
+        else return null;
     }
 }
