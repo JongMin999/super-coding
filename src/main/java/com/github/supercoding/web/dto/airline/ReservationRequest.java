@@ -3,11 +3,13 @@ package com.github.supercoding.web.dto.airline;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Schema(description = "예약 요청 DTO")
 public class ReservationRequest {

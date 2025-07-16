@@ -27,9 +27,9 @@ public class ElectronicStoreController {
     @Operation(summary = "모든 Items 검색")
     @GetMapping("/items")
     public List<Item> findAllItem() {
-        log.info("GET /items 요청이 들어왔습니다.");
+        //log.info("GET /items 요청이 들어왔습니다.");
         List<Item> items = electronicStoreItemService.findAllItem();
-        log.info("GET /items 응답: {}", items);
+       // log.info("GET /items 응답: {}", items);
         return items;
     }
 
@@ -70,9 +70,9 @@ public class ElectronicStoreController {
             @Parameter(name = "ids", description = "Item ID 리스트", example = "[\"1\",\"2\",\"3\"]")
             @RequestParam("ids") List<String> ids
     ) {
-        log.info("GET /items-queries 요청 ids: {}", ids);
+      //  log.info("GET /items-queries 요청 ids: {}", ids);
         List<Item> items = electronicStoreItemService.findItemsByIds(ids);
-        log.info("GET /items-queries 응답: {}", items);
+      //  log.info("GET /items-queries 응답: {}", items);
         return items;
     }
 
@@ -117,7 +117,7 @@ public class ElectronicStoreController {
     @GetMapping("/items-types")
     public List<Item> findItemByTypes(
             @RequestParam("type") List<String> types){
-        log.info("/items-types 요청 ids: " + types);
+       // log.info("/items-types 요청 ids: " + types);
         List<Item> items = electronicStoreItemService.findItemsByTypes(types);
         return items;
     }

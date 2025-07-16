@@ -1,13 +1,10 @@
 package com.github.supercoding.repository.flight;
 
 import com.github.supercoding.repository.airlineTicket.AirlineTicket;
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Entity
+@AllArgsConstructor
 @Table(name = "flight")
 public class Flight {
     @Id @Column(name = "flight_id") @GeneratedValue(strategy = GenerationType.IDENTITY)
