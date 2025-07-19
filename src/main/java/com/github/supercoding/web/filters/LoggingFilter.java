@@ -1,4 +1,4 @@
-package com.github.supercoding.web.dto.filters;
+package com.github.supercoding.web.filters;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

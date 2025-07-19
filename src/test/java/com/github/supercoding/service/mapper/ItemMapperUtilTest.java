@@ -2,7 +2,6 @@ package com.github.supercoding.service.mapper;
 
 import com.github.supercoding.repository.Items.ItemEntity;
 import com.github.supercoding.repository.storeSales.StoreSales;
-import com.github.supercoding.service.ItemMapper;
 import com.github.supercoding.web.dto.items.Item;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;

@@ -1,4 +1,4 @@
-package com.github.supercoding.service;
+package com.github.supercoding.service.mapper;
 import com.github.supercoding.repository.airlineTicket.AirlineTicket;
 import com.github.supercoding.web.dto.airline.Ticket;
 import org.mapstruct.Mapper;

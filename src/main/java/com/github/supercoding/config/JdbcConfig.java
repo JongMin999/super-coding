@@ -10,7 +10,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-public class jdbcConfig {
+public class JdbcConfig {
 
     @Bean
     public DataSource dataSource1(){
