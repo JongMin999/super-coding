@@ -13,3 +13,107 @@
 2025-07-11 11:31:15.740 [http-nio-8080-exec-1] [34mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2025-07-11 11:31:15.740 [http-nio-8080-exec-1] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
 2025-07-11 11:31:15.741 [http-nio-8080-exec-1] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Completed initialization in 1 ms
+2025-07-22 07:35:38.432 [background-preinit] [34mINFO [0;39m [36mo.h.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.2.Final
+2025-07-22 07:35:38.472 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - Starting SuperCodingApplication using Java 17.0.15 with PID 3140 (C:\Users\MalRang\Spring\super-coding\build\classes\java\main started by MalRang in C:\Users\MalRang\Spring\super-coding)
+2025-07-22 07:35:38.472 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - The following 1 profile is active: "dev"
+2025-07-22 07:35:38.934 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-22 07:35:38.934 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-22 07:35:38.964 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 23 ms. Found 2 JPA repository interfaces.
+2025-07-22 07:35:38.965 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-22 07:35:38.965 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-22 07:35:38.984 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 18 ms. Found 9 JPA repository interfaces.
+2025-07-22 07:35:39.524 [main] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 8080 (http)
+2025-07-22 07:35:39.533 [main] [34mINFO [0;39m [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-22 07:35:39.534 [main] [34mINFO [0;39m [36mo.a.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+2025-07-22 07:35:39.534 [main] [34mINFO [0;39m [36mo.a.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-22 07:35:39.574 [main] [34mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m - Initializing Spring embedded WebApplicationContext
+2025-07-22 07:35:39.575 [main] [34mINFO [0;39m [36mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 1070 ms
+2025-07-22 07:35:39.683 [main] [34mINFO [0;39m [36mo.h.jpa.internal.util.LogHelper[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-22 07:35:39.734 [main] [34mINFO [0;39m [36morg.hibernate.Version[0;39m - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-22 07:35:39.765 [main] [34mINFO [0;39m [36mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
+2025-07-22 07:35:40.036 [main] [34mINFO [0;39m [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-22 07:35:40.273 [main] [34mINFO [0;39m [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.DriverManagerDataSource@10e9a5fe']
+	Database driver: undefined/unknown
+	Database version: 9.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-22 07:35:40.905 [main] [34mINFO [0;39m [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-22 07:35:40.907 [main] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:35:40.915 [main] [34mINFO [0;39m [36mo.h.jpa.internal.util.LogHelper[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-22 07:35:40.920 [main] [34mINFO [0;39m [36mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
+2025-07-22 07:35:40.946 [main] [34mINFO [0;39m [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-22 07:35:40.961 [main] [34mINFO [0;39m [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.DriverManagerDataSource@6aa85fcf']
+	Database driver: undefined/unknown
+	Database version: 9.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-22 07:35:41.052 [main] [34mINFO [0;39m [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-22 07:35:41.052 [main] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:35:41.213 [main] [34mINFO [0;39m [36mo.s.d.j.r.query.QueryEnhancerFactory[0;39m - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-22 07:35:41.685 [main] [34mINFO [0;39m [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+2025-07-22 07:35:42.172 [main] [34mINFO [0;39m [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-22 07:35:42.182 [main] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m - Tomcat started on port 8080 (http) with context path '/'
+2025-07-22 07:35:42.188 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - Started SuperCodingApplication in 4.107 seconds (process running for 4.497)
+2025-07-22 07:36:59.680 [http-nio-8080-exec-2] [34mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-22 07:36:59.680 [http-nio-8080-exec-2] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+2025-07-22 07:36:59.680 [http-nio-8080-exec-2] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Completed initialization in 0 ms
+2025-07-22 07:37:13.374 [SpringApplicationShutdownHook] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown[0;39m - Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-22 07:37:13.475 [tomcat-shutdown] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.GracefulShutdown[0;39m - Graceful shutdown complete
+2025-07-22 07:37:13.478 [SpringApplicationShutdownHook] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:37:13.478 [SpringApplicationShutdownHook] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:37:15.186 [background-preinit] [34mINFO [0;39m [36mo.h.validator.internal.util.Version[0;39m - HV000001: Hibernate Validator 8.0.2.Final
+2025-07-22 07:37:15.217 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - Starting SuperCodingApplication using Java 17.0.15 with PID 26944 (C:\Users\MalRang\Spring\super-coding\build\classes\java\main started by MalRang in C:\Users\MalRang\Spring\super-coding)
+2025-07-22 07:37:15.218 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - The following 1 profile is active: "dev"
+2025-07-22 07:37:15.578 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-22 07:37:15.578 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-22 07:37:15.603 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 19 ms. Found 2 JPA repository interfaces.
+2025-07-22 07:37:15.604 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Multiple Spring Data modules found, entering strict repository configuration mode
+2025-07-22 07:37:15.604 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-22 07:37:15.623 [main] [34mINFO [0;39m [36mo.s.d.r.c.RepositoryConfigurationDelegate[0;39m - Finished Spring Data repository scanning in 18 ms. Found 9 JPA repository interfaces.
+2025-07-22 07:37:16.097 [main] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m - Tomcat initialized with port 8080 (http)
+2025-07-22 07:37:16.105 [main] [34mINFO [0;39m [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Initializing ProtocolHandler ["http-nio-8080"]
+2025-07-22 07:37:16.107 [main] [34mINFO [0;39m [36mo.a.catalina.core.StandardService[0;39m - Starting service [Tomcat]
+2025-07-22 07:37:16.107 [main] [34mINFO [0;39m [36mo.a.catalina.core.StandardEngine[0;39m - Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-22 07:37:16.152 [main] [34mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m - Initializing Spring embedded WebApplicationContext
+2025-07-22 07:37:16.153 [main] [34mINFO [0;39m [36mo.s.b.w.s.c.ServletWebServerApplicationContext[0;39m - Root WebApplicationContext: initialization completed in 907 ms
+2025-07-22 07:37:16.233 [main] [34mINFO [0;39m [36mo.h.jpa.internal.util.LogHelper[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-22 07:37:16.265 [main] [34mINFO [0;39m [36morg.hibernate.Version[0;39m - HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-22 07:37:16.286 [main] [34mINFO [0;39m [36mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
+2025-07-22 07:37:16.515 [main] [34mINFO [0;39m [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-22 07:37:16.711 [main] [34mINFO [0;39m [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.DriverManagerDataSource@259287ac']
+	Database driver: undefined/unknown
+	Database version: 9.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-22 07:37:17.281 [main] [34mINFO [0;39m [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-22 07:37:17.283 [main] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:37:17.290 [main] [34mINFO [0;39m [36mo.h.jpa.internal.util.LogHelper[0;39m - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-22 07:37:17.292 [main] [34mINFO [0;39m [36mo.h.c.i.RegionFactoryInitiator[0;39m - HHH000026: Second-level cache disabled
+2025-07-22 07:37:17.319 [main] [34mINFO [0;39m [36mo.s.o.j.p.SpringPersistenceUnitInfo[0;39m - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-22 07:37:17.331 [main] [34mINFO [0;39m [36mo.hibernate.orm.connections.pooling[0;39m - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'org.springframework.jdbc.datasource.DriverManagerDataSource@4c90fc3b']
+	Database driver: undefined/unknown
+	Database version: 9.3
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-22 07:37:17.410 [main] [34mINFO [0;39m [36mo.h.e.t.j.p.i.JtaPlatformInitiator[0;39m - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-22 07:37:17.411 [main] [34mINFO [0;39m [36mo.s.o.j.LocalContainerEntityManagerFactoryBean[0;39m - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-22 07:37:17.575 [main] [34mINFO [0;39m [36mo.s.d.j.r.query.QueryEnhancerFactory[0;39m - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-07-22 07:37:17.958 [main] [34mINFO [0;39m [36mo.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer[0;39m - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailService
+2025-07-22 07:37:18.392 [main] [34mINFO [0;39m [36mo.a.coyote.http11.Http11NioProtocol[0;39m - Starting ProtocolHandler ["http-nio-8080"]
+2025-07-22 07:37:18.402 [main] [34mINFO [0;39m [36mo.s.b.w.e.tomcat.TomcatWebServer[0;39m - Tomcat started on port 8080 (http) with context path '/'
+2025-07-22 07:37:18.407 [main] [34mINFO [0;39m [36mc.g.s.SuperCodingApplication[0;39m - Started SuperCodingApplication in 3.589 seconds (process running for 3.984)
+2025-07-22 07:37:18.435 [http-nio-8080-exec-3] [34mINFO [0;39m [36mo.a.c.c.C.[Tomcat].[localhost].[/][0;39m - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-22 07:37:18.436 [http-nio-8080-exec-3] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Initializing Servlet 'dispatcherServlet'
+2025-07-22 07:37:18.436 [http-nio-8080-exec-3] [34mINFO [0;39m [36mo.s.web.servlet.DispatcherServlet[0;39m - Completed initialization in 0 ms
