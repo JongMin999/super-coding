@@ -3,7 +3,9 @@ package com.github.supercoding.config.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +21,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtTokenProvider {
 
-    private final String secretKey = Base64.getEncoder()
-            .encodeToString("super-coding".getBytes());
+    @Value("${jwt.secret-key-source}")
+    private String secretKeySource;
+    private String secretKey;
+
+    @PostConstruct
+    public void setUp(){
+        secretKey = Base64.getEncoder()
+                .encodeToString(secretKeySource.getBytes());
+    }
 
     private long tokenValidMillisecond = 1000L * 60 * 60; // 1시간
 
