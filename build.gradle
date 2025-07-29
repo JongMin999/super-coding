@@ -1,16 +1,14 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.5.3'
-    id 'io.spring.dependency-management' version '1.1.7'
+    id 'org.springframework.boot' version '2.7.14'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
 group = 'com.github'
 version = '0.0.1-SNAPSHOT'
 
 java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+    sourceCompatibility = '11'
 }
 
 configurations {
@@ -22,41 +20,39 @@ configurations {
 repositories {
     mavenCentral()
 }
-dependencyManagement {
-    imports {
-        mavenBom "org.springdoc:springdoc-openapi-bom:2.8.9"
-    }
-}
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    runtimeOnly 'mysql:mysql-connector-java:8.0.28'
+    runtimeOnly 'mysql:mysql-connector-java:8.0.26'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    //lombok
+    // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
 
-    //testlombok
+    // Test Lombok
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
 
-    //MapStruct
+    // Mapstruct
     implementation 'org.mapstruct:mapstruct:1.5.3.Final'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
 
-    //jpa
+    // JPA
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
     runtimeOnly 'com.h2database:h2'
+    // Test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    //swagger
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.9'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
 
-    //Cache
+    // Cache
     implementation 'org.springframework.boot:spring-boot-starter-cache'
 
-    //Jwt
+    // jwt
     implementation 'io.jsonwebtoken:jjwt:0.9.1'
 
     // security
