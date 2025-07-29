@@ -27,28 +27,24 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .headers(headers -> headers
-                        .frameOptions(frameOptions -> frameOptions.sameOrigin())
-                )
-                .formLogin(formLogin -> formLogin.disable())
-                .csrf(csrf -> csrf.disable())
-                .cors(cors -> cors
-                        .configurationSource(corsConfigurationSource()))
-                .httpBasic(httpBasic -> httpBasic.disable())
-                .rememberMe(rememberMe -> rememberMe.disable())
-                .sessionManagement(sessionManagement -> sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )
-                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/resources/static/**", "/v1/api/sign/*").permitAll()
-                        .requestMatchers("/v1/api/air-reservation/*").hasRole("USER")
-                        .anyRequest().authenticated()
-                )
-                .exceptionHandling(exceptionHandling -> exceptionHandling
-                        .authenticationEntryPoint(new CustomAuthenticationEntryPoint()) // 인증 실패 시
-                        .accessDeniedHandler(new CustomerAccessDeniedHandler())      // 권한 부족 시
-                )
+        http.headers().frameOptions().sameOrigin()
+                .and()
+                .formLogin().disable()
+                .csrf().disable()
+                .cors().configurationSource(corsConfigurationSource())
+                .and()
+                .httpBasic().disable()
+                .rememberMe().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .antMatchers("/resources/static/**", "/v1/api/sign/*").permitAll()
+                .antMatchers("/v1/api/air-reservation/*").hasRole("USER")
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+                .accessDeniedHandler(new CustomerAccessDeniedHandler())
+                .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
@@ -60,7 +56,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
+    public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:63342"));
         configuration.setAllowCredentials(true); // token 주고 받을 때,

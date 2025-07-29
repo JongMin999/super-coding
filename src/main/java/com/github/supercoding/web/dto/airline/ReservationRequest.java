@@ -2,7 +2,7 @@ package com.github.supercoding.web.dto.airline;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,20 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Schema(description = "예약 요청 DTO")
 public class ReservationRequest {
+    @ApiModelProperty(name = "userId", value = "유저 ID", example = "1") private Integer userId;
+    @ApiModelProperty(name = "airlineTicketId", value = "항공편 ID", example = "2") private Integer airlineTicketId;
 
-    @Schema(
-            name        = "user_id",
-            description = "유저 ID",
-            example     = "1"
-    )
-    private Integer userId;
-
-    @Schema(
-            name        = "airline_ticket_id",
-            description = "항공권 ID",
-            example     = "2"
-    )
-    private Integer airlineTicketId;
 }
+

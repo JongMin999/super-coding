@@ -4,7 +4,7 @@ import com.github.supercoding.repository.airlineTicket.AirlineTicket;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 

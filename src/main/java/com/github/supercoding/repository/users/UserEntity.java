@@ -4,7 +4,7 @@ import com.github.supercoding.repository.passenger.Passenger;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
