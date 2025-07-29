@@ -3,7 +3,7 @@ package com.github.supercoding.repository.storeSales;
 import com.github.supercoding.repository.Items.ItemEntity;
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter

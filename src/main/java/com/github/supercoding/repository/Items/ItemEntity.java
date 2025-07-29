@@ -2,7 +2,7 @@ package com.github.supercoding.repository.Items;
 
 import com.github.supercoding.repository.storeSales.StoreSales;
 import com.github.supercoding.web.dto.items.ItemBody;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import java.util.Optional;
 

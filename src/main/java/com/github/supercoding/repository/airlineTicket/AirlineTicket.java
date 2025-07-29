@@ -4,7 +4,7 @@ import com.github.supercoding.repository.flight.Flight;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;

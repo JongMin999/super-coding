@@ -1,7 +1,7 @@
 package com.github.supercoding.repository.passenger;
 
 import com.github.supercoding.repository.users.UserEntity;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @Getter

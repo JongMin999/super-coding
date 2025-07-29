@@ -5,9 +5,8 @@ import com.github.supercoding.web.dto.items.BuyOrder;
 import com.github.supercoding.web.dto.items.Item;
 import com.github.supercoding.web.dto.items.ItemBody;
 import com.github.supercoding.web.dto.items.StoreInfo;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -24,119 +23,115 @@ public class ElectronicStoreController {
 
     private final ElectronicStoreItemService electronicStoreItemService;
 
-    @Operation(summary = "모든 Items 검색")
+    @ApiOperation("모든 Items을 검색")
     @GetMapping("/items")
-    public List<Item> findAllItem() {
-        //log.info("GET /items 요청이 들어왔습니다.");
+    public List<Item> findAllItem(){
         List<Item> items = electronicStoreItemService.findAllItem();
-       // log.info("GET /items 응답: {}", items);
         return items;
     }
 
-    @Operation(summary = "단일 Item 등록")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            description = "등록할 Item 정보",
-            required = true
-    )
+    @ApiOperation("단일 Item 등록")
     @PostMapping("/items")
-    public String registerItem(
-            @RequestBody ItemBody itemBody
-    ) {
+    public String registerItem(@RequestBody ItemBody itemBody){
+//        log.info("POST /items 요청이 들어왔습니다.");
         Integer itemId = electronicStoreItemService.savaItem(itemBody);
+//        log.info("POST /items 응답 ID: " + itemId);
         return "ID: " + itemId;
     }
 
-    @Operation(summary = "단일 Item 조회 (PathVariable)")
+    @ApiOperation("단일 Item id로 검색")
     @GetMapping("/items/{id}")
     public Item findItemByPathId(
-            @Parameter(name = "id", description = "Item ID", example = "1")
-            @PathVariable String id
-    ) {
-        return electronicStoreItemService.findItemById(id);
+            @ApiParam(name = "id", value = "item ID", example = "1") @PathVariable String id){
+        Item item = electronicStoreItemService.findItemById(id);
+        return item;
     }
 
-    @Operation(summary = "단일 Item 조회 (RequestParam)")
+    @ApiOperation("단일 Item id로 검색 (쿼리문)")
     @GetMapping("/items-query")
     public Item findItemByQueryId(
-            @Parameter(name = "id", description = "Item ID", example = "1")
-            @RequestParam("id") String id
-    ) {
-        return electronicStoreItemService.findItemById(id);
+            @ApiParam(name = "id", value = "item ID", example = "1")
+            @RequestParam("id") String id){
+        Item item = electronicStoreItemService.findItemById(id);
+        return item;
     }
 
-    @Operation(summary = "여러 Item 조회 (RequestParam 리스트)")
+    @ApiOperation("여러 Item ids로 검색 (쿼리문)")
     @GetMapping("/items-queries")
-    public List<Item> findItemByQueryIds(
-            @Parameter(name = "ids", description = "Item ID 리스트", example = "[\"1\",\"2\",\"3\"]")
-            @RequestParam("ids") List<String> ids
-    ) {
-      //  log.info("GET /items-queries 요청 ids: {}", ids);
+    public List<Item> findItemByQueryIds(@ApiParam(name = "ids", value = "item IDs", example = "[1,2,3]") @RequestParam("id") List<String> ids){
         List<Item> items = electronicStoreItemService.findItemsByIds(ids);
-      //  log.info("GET /items-queries 응답: {}", items);
         return items;
     }
 
-    @Operation(summary = "단일 Item 삭제")
+    @ApiOperation("단일 Item id로 삭제")
     @DeleteMapping("/items/{id}")
-    public String deleteItemByPathId(
-            @Parameter(name = "id", description = "Item ID", example = "1")
-            @PathVariable String id
-    ) {
+    public String deleteItemByPathId(@ApiParam(name = "id", value = "item ID", example = "1") @PathVariable String id){
         electronicStoreItemService.deleteItem(id);
-        return "Object with id=" + id + " has been deleted";
+        String responseMessage = "Object with id = " + id + " has been deleted";
+        return responseMessage;
     }
 
-    @Operation(summary = "단일 Item 수정")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            description = "수정할 Item 정보",
-            required = true
-    )
+    @ApiOperation("단일 Item id 수정")
     @PutMapping("/items/{id}")
-    public Item updateItem(
-            @Parameter(name = "id", description = "Item ID", example = "1")
-            @PathVariable String id,
-            @RequestBody ItemBody itemBody
-    ) {
-        return electronicStoreItemService.updateItem(id, itemBody);
+    public Item updateItem(@PathVariable String id, @RequestBody ItemBody itemBody){
+//        log.info("PUT /items/" + id + " 요청이 들어왔습니다.");
+        Item updatedItem = electronicStoreItemService.updateItem(id, itemBody);
+//        log.info("PUT /items/" + id + " 응답: " + updatedItem);
+        return updatedItem;
     }
 
-    @Operation(summary = "단일 Item 구매")
-    @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            description = "구매 주문 정보",
-            required = true
-    )
+    @ApiOperation("단일 Item 구매")
     @PostMapping("/items/buy")
-    public String buyItem(
-            @RequestBody BuyOrder buyOrder
-    ) {
+    public String buyItem(@RequestBody BuyOrder buyOrder){
+//        log.info("POST /items/buy 요청이 들어왔습니다.");
         Integer orderItemNums = electronicStoreItemService.buyItems(buyOrder);
-        return "요청하신 Item 중 " + orderItemNums + "개를 구매하였습니다.";
+        String responseMessage = "요청하신 Item 중 " + orderItemNums + "개를 구매 하였습니다.";
+//        log.info("POST /items/buy 응답: " + responseMessage);
+        return responseMessage;
     }
 
-    @Operation(summary = "여러 Item types 검색 (쿼리문)")
-    @GetMapping("/items-types")
-    public List<Item> findItemByTypes(
-            @RequestParam("type") List<String> types){
-       // log.info("/items-types 요청 ids: " + types);
+    @ApiOperation("type 검색")
+    @GetMapping("/items-type")
+    public List<Item> findItemsByType(@RequestParam("type") List<String> types){
+//        log.info("GET /items-type 요청이 들어왔습니다.");
         List<Item> items = electronicStoreItemService.findItemsByTypes(types);
+//        log.info("GET /items-type 응답: " + items);
         return items;
     }
 
-    @Operation(summary = "pagination 지원")
+    @ApiOperation("가성비 싼 거부터 검색")
+    @GetMapping("/items-prices")
+    public List<Item> findItemsByPricing(@RequestParam("max") Integer maxPrice){
+//        log.info("GET /items-prices 요청이 들어왔습니다.");
+        List<Item> items = electronicStoreItemService.findItemsOrderByPrices(maxPrice);
+//        log.info("GET /items-prices 응답: " + items);
+        return items;
+    }
+
+    @ApiOperation("pagnation 지원")
     @GetMapping("/items-page")
-    public Page<Item> findItemPagination(Pageable pageable) {
-        return electronicStoreItemService.findAllWithPageable(pageable);
+    public Page<Item> findItemsPagination(Pageable pageable){
+//        log.info("GET /items-page 요청이 들어왔습니다.");
+        Page<Item> items = electronicStoreItemService.findAllWithPageable(pageable);
+//        log.info("GET /items-page 응답: " + items);
+        return items;
     }
 
-    @Operation(summary = "pagination 지원 2")
+    @ApiOperation("pagnation 지원")
     @GetMapping("/items-types-page")
-    public Page<Item> findItemsPagination(@RequestParam("type") List<String> types, Pageable pageable) {
-        return electronicStoreItemService.findAllWithPageable(types, pageable);
+    public Page<Item> findItemsTypesPagination(@RequestParam("type") List<String> types, Pageable pageable){
+//        log.info("GET /items-types-page 요청이 들어왔습니다.");
+        Page<Item> items = electronicStoreItemService.findAllWithPageable(types, pageable);
+//        log.info("GET /items-types-page 응답: " + items);
+        return items;
     }
 
-    @Operation(summary = "전체 Stores 정보 검색")
+    @ApiOperation("전체 stores 정보 검색")
     @GetMapping("/stores")
-    public List<StoreInfo> findAllStoreInfo() {
-        return electronicStoreItemService.findAllStoreInfo();
+    public List<StoreInfo> findAllStoreInfo(){
+//        log.info("GET /stores 요청이 들어왔습니다.");
+        List<StoreInfo> storeInfos = electronicStoreItemService.findAllStoreInfo();
+//        log.info("GET /stores 응답: " + storeInfos);
+        return storeInfos;
     }
 }

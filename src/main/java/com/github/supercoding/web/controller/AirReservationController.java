@@ -6,8 +6,8 @@ import com.github.supercoding.web.dto.airline.ReservationRequest;
 import com.github.supercoding.web.dto.airline.ReservationResult;
 import com.github.supercoding.web.dto.airline.Ticket;
 import com.github.supercoding.web.dto.airline.TicketResponse;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,27 +24,24 @@ public class AirReservationController {
 
     private final AirReservationService airReservationService;
 
-    @Operation(summary = "선호하는 티켓 탐색")
+    @ApiOperation("선호하는 ticket 탐색")
     @GetMapping("/tickets")
     public TicketResponse findAirlineTickets(
             @AuthenticationPrincipal CustomUserDetails customUserDetails,
-            @Parameter(name = "airline-ticket-type", description = "항공권 타입", example = "왕복|편도")
-            @RequestParam("airline-ticket-type") String ticketType
-    ) {
+            @ApiParam(name = "airline-ticket-type", value = "항공권 타입", example = "왕복|편도") @RequestParam("airline-ticket-type") String ticketType )
+    {
         Integer userId = customUserDetails.getUserId();
         List<Ticket> tickets = airReservationService.findUserFavoritePlaceTickets(userId, ticketType);
         return new TicketResponse(tickets);
     }
-
-    @Operation(summary = "User와 Ticket Id로 예약 진행")
+    @ApiOperation("User와 Ticket Id로 예약 진행")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/reservations")
-    public ReservationResult makeReservation(
-            @RequestBody ReservationRequest reservationRequest){
+    public ReservationResult makeReservation(@RequestBody ReservationRequest reservationRequest){
         return airReservationService.makeReservation(reservationRequest);
     }
 
-    @Operation(summary = "userId의 예약한 항공편과 수수료 총합")
+    @ApiOperation("userId의 예약한 항공편과 수수료 총합")
     @GetMapping("/users-sum-price")
     public Double findUserFlightSumPrice(
             @AuthenticationPrincipal CustomUserDetails customUserDetails
