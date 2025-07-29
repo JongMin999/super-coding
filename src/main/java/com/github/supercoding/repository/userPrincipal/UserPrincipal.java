@@ -3,7 +3,7 @@ package com.github.supercoding.repository.userPrincipal;
 import com.github.supercoding.repository.users.UserEntity;
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Getter
